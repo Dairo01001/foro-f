@@ -32,6 +32,9 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(registry -> {
                     registry.requestMatchers("/auth/**").permitAll();
+                    registry.requestMatchers("/v3/api-docs/**").permitAll();
+                    registry.requestMatchers("/swagger-ui.html").permitAll();
+                    registry.requestMatchers("/swagger-ui/**").permitAll();
                     registry.anyRequest().authenticated();
                 })
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -5,6 +5,7 @@ import dev.dairo.api_f.User.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -16,7 +17,7 @@ public class PostgresUserRepository implements UserRepository {
 
     @Override
     public Optional<User> findById(UUID id) {
-        return Optional.empty();
+        return Optional.of(jpaUserRepository.findById(id).orElse(null));
     }
 
     @Override
@@ -27,5 +28,10 @@ public class PostgresUserRepository implements UserRepository {
     @Override
     public User save(User user) {
         return jpaUserRepository.save(user);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return jpaUserRepository.findAll();
     }
 }
