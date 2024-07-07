@@ -29,4 +29,8 @@ public class Answer {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id")
     private User author;
+
+    public static Answer create(String message, String solution, Topic topic, User author) {
+        return new Answer(UUID.randomUUID(), message, LocalDate.now(), solution, topic, author);
+    }
 }

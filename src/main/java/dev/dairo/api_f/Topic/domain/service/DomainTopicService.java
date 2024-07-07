@@ -5,6 +5,7 @@ import dev.dairo.api_f.Course.domain.service.CourseService;
 import dev.dairo.api_f.Topic.application.request.CreateTopicRequest;
 import dev.dairo.api_f.Topic.application.request.UpdateTopicRequest;
 import dev.dairo.api_f.Topic.application.response.CreateTopicResponse;
+import dev.dairo.api_f.Topic.application.response.ListTopicResponse;
 import dev.dairo.api_f.Topic.application.response.TopicResponse;
 import dev.dairo.api_f.Topic.domain.Topic;
 import dev.dairo.api_f.Topic.domain.repository.TopicRepository;
@@ -15,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -70,5 +72,20 @@ public class DomainTopicService implements TopicService {
     @Override
     public void deleteTopic(UUID id) {
         topicRepository.deleteById(id);
+    }
+
+    @Override
+    public Topic getTopicId(UUID id) {
+        return topicRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Topic not found"));
+    }
+
+    @Override
+    public List<ListTopicResponse> getTopics() {
+        return topicRepository.findAll()
+                .stream()
+                .map(ListTopicResponse::fromTopic)
+                .toList();
     }
 }

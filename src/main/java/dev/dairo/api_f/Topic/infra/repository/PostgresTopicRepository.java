@@ -1,10 +1,12 @@
 package dev.dairo.api_f.Topic.infra.repository;
 
+import dev.dairo.api_f.Answer.domain.Answer;
 import dev.dairo.api_f.Topic.domain.Topic;
 import dev.dairo.api_f.Topic.domain.repository.TopicRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -32,5 +34,10 @@ public class PostgresTopicRepository implements TopicRepository {
     @Override
     public void deleteById(UUID id) {
         jpaTopicRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Topic> findAll() {
+        return jpaTopicRepository.findAll();
     }
 }

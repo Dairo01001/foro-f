@@ -3,6 +3,8 @@ package dev.dairo.api_f.Topic.application.rest;
 import dev.dairo.api_f.Topic.application.request.CreateTopicRequest;
 import dev.dairo.api_f.Topic.application.request.UpdateTopicRequest;
 import dev.dairo.api_f.Topic.application.response.CreateTopicResponse;
+import dev.dairo.api_f.Topic.application.response.ListAnswerResponse;
+import dev.dairo.api_f.Topic.application.response.ListTopicResponse;
 import dev.dairo.api_f.Topic.application.response.TopicResponse;
 import dev.dairo.api_f.Topic.domain.service.TopicService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -68,5 +71,11 @@ public class TopicController {
     ) {
         topicService.deleteTopic(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping
+    @Operation(summary = "Get all topics")
+    public ResponseEntity<List<ListTopicResponse>> getTopics() {
+        return ResponseEntity.ok(topicService.getTopics());
     }
 }

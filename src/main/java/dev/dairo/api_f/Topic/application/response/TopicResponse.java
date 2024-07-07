@@ -3,6 +3,7 @@ package dev.dairo.api_f.Topic.application.response;
 import dev.dairo.api_f.Topic.domain.Topic;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public record TopicResponse(
         String id,
@@ -11,7 +12,8 @@ public record TopicResponse(
         LocalDate createdAt,
         Boolean status,
         AuthorResponse author,
-        CourseResponse course
+        CourseResponse course,
+        List<ListAnswerResponse> answers
 ) {
     public static TopicResponse fromTopic(Topic topic) {
         return new TopicResponse(
@@ -21,7 +23,8 @@ public record TopicResponse(
                 topic.getCreatedAt(),
                 topic.getStatus(),
                 AuthorResponse.fromAuthor(topic.getAuthor()),
-                CourseResponse.fromCourse(topic.getCourse())
+                CourseResponse.fromCourse(topic.getCourse()),
+                ListAnswerResponse.fromAnswers(topic.getAnswers())
         );
     }
 }
