@@ -12,7 +12,10 @@ import dev.dairo.api_f.Topic.domain.repository.TopicRepository;
 import dev.dairo.api_f.User.domain.User;
 import dev.dairo.api_f.User.domain.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.query.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -34,7 +37,7 @@ public class DomainTopicService implements TopicService {
         }
 
         Course course = courseService.getCourseById(createTopicRequest.courseId());
-        User author = userService.getUserById(createTopicRequest.authorId());
+        User author = userService.findById(createTopicRequest.authorId());
 
         Topic newTopic = Topic.create(
                 createTopicRequest.title(),

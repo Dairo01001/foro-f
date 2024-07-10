@@ -30,7 +30,15 @@ public class Answer {
     @JoinColumn(name = "author_id")
     private User author;
 
-    public static Answer create(String message, String solution, Topic topic, User author) {
-        return new Answer(UUID.randomUUID(), message, LocalDate.now(), solution, topic, author);
+    public Answer(UUID id, String message, LocalDate createdAt, String solution) {
+        super();
+        setId(id);
+        setMessage(message);
+        setCreatedAt(createdAt);
+        setSolution(solution);
+    }
+
+    public static Answer create(String message, String solution) {
+        return new Answer(UUID.randomUUID(), message, LocalDate.now(), solution);
     }
 }

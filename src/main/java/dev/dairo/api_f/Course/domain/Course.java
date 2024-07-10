@@ -1,10 +1,10 @@
 package dev.dairo.api_f.Course.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import dev.dairo.api_f.Topic.domain.Topic;
+import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity(name = "Course")
@@ -19,6 +19,16 @@ public class Course {
     private @Id UUID id;
     private String name;
     private String category;
+
+    @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
+    private List<Topic> topics;
+
+    public Course(UUID id, String name, String category) {
+        super();
+        setId(id);
+        setName(name);
+        setCategory(category);
+    }
 
     public static Course register(String name, String category) {
         return new Course(UUID.randomUUID(), name, category);

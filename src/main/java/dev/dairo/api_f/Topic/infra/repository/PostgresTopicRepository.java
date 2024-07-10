@@ -1,6 +1,5 @@
 package dev.dairo.api_f.Topic.infra.repository;
 
-import dev.dairo.api_f.Answer.domain.Answer;
 import dev.dairo.api_f.Topic.domain.Topic;
 import dev.dairo.api_f.Topic.domain.repository.TopicRepository;
 import lombok.RequiredArgsConstructor;

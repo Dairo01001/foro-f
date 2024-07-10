@@ -3,7 +3,6 @@ package dev.dairo.api_f.Topic.application.rest;
 import dev.dairo.api_f.Topic.application.request.CreateTopicRequest;
 import dev.dairo.api_f.Topic.application.request.UpdateTopicRequest;
 import dev.dairo.api_f.Topic.application.response.CreateTopicResponse;
-import dev.dairo.api_f.Topic.application.response.ListAnswerResponse;
 import dev.dairo.api_f.Topic.application.response.ListTopicResponse;
 import dev.dairo.api_f.Topic.application.response.TopicResponse;
 import dev.dairo.api_f.Topic.domain.service.TopicService;

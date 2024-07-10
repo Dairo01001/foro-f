@@ -1,6 +1,5 @@
 package dev.dairo.api_f.User.domain.service;
 
-import dev.dairo.api_f.User.application.response.ListUserResponse;
 import dev.dairo.api_f.User.domain.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -11,11 +10,11 @@ public interface UserService {
 
     UserDetailsService getUserDetailsService();
 
-    User saveUser(User user);
+    User save(User user);
 
     User findByEmail(String email);
 
-    User getUserById(UUID id);
+    User findById(UUID id);
 
-    List<ListUserResponse> getAllUsers();
+    List<User> findAll();
 }

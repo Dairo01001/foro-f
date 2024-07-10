@@ -33,7 +33,7 @@ public class Topic {
     @JoinColumn(name = "author_id")
     private User author;
 
-    @OneToMany(mappedBy = "topic", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "topic", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Answer> answers;
 
     public static Topic create(String title, String message, Course course, User author) {

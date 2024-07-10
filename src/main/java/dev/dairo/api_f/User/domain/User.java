@@ -1,5 +1,7 @@
 package dev.dairo.api_f.User.domain;
 
+import dev.dairo.api_f.Answer.domain.Answer;
+import dev.dairo.api_f.Topic.domain.Topic;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -7,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -28,6 +31,21 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Set<UserRole> roles;
+
+    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
+    private List<Topic> topics;
+
+    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
+    private List<Answer> answers;
+
+    public User(UUID id, String name, String email, String password, Set<UserRole> roles) {
+        super();
+        setId(id);
+        setName(name);
+        setEmail(email);
+        setPassword(password);
+        setRoles(roles);
+    }
 
     public static User create(String name, String email, String password, Set<UserRole> roles) {
        return new User(UUID.randomUUID(), name, email, password, roles);

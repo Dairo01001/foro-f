@@ -5,6 +5,7 @@ import dev.dairo.api_f.Answer.domain.repository.AnswerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -20,6 +21,16 @@ public class PostgresAnswerRepository implements AnswerRepository {
 
     @Override
     public Optional<Answer> getAnswerById(UUID id) {
-        return Optional.of(jpaAnswerRepository.findById(id).orElse(null));
+        return jpaAnswerRepository.findById(id);
+    }
+
+    @Override
+    public List<Answer> findAll() {
+        return jpaAnswerRepository.findAll();
+    }
+
+    @Override
+    public void deleteById(UUID id) {
+        jpaAnswerRepository.deleteById(id);
     }
 }

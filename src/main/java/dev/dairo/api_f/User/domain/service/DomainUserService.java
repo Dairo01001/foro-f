@@ -1,15 +1,12 @@
 package dev.dairo.api_f.User.domain.service;
 
-import dev.dairo.api_f.User.application.response.ListUserResponse;
 import dev.dairo.api_f.User.domain.User;
 import dev.dairo.api_f.User.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,7 +29,7 @@ public class DomainUserService implements UserService {
     }
 
     @Override
-    public User saveUser(User user) {
+    public User save(User user) {
         return userRepository.save(user);
     }
 
@@ -46,15 +43,12 @@ public class DomainUserService implements UserService {
     }
 
     @Override
-    public User getUserById(UUID id) {
-        return userRepository
-                .findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+    public User findById(UUID id) {
+        return userRepository.findById(id);
     }
 
     @Override
-    public List<ListUserResponse> getAllUsers() {
-        List<User> users = userRepository.findAll();
-        return users.stream().map(ListUserResponse::fromUser).toList();
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 }

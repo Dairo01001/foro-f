@@ -1,13 +1,16 @@
 package dev.dairo.api_f.Answer.domain.service;
 
-import dev.dairo.api_f.Answer.application.request.CreateAnswerRequest;
-import dev.dairo.api_f.Answer.application.response.AnswerResponse;
-import dev.dairo.api_f.Answer.application.response.CreateAnswerResponse;
+import dev.dairo.api_f.Answer.domain.Answer;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface AnswerService {
-    CreateAnswerResponse createAnswer(CreateAnswerRequest createAnswerRequest);
+    Answer save(Answer answer, UUID topicId, UUID authorId);
 
-    AnswerResponse getAnswerById(UUID id);
+    Answer getAnswerById(UUID id);
+
+    List<Answer> findAll();
+
+    void delete(UUID id);
 }

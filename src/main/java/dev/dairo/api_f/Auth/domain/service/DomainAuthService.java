@@ -21,7 +21,7 @@ public class DomainAuthService implements AuthService {
 
     @Override
     public AuthResponse signUp(SignUpRequest signUpRequest) {
-        User newUser = userService.saveUser(
+        User newUser = userService.save(
                 User.create(
                         signUpRequest.name(),
                         signUpRequest.email(),
@@ -31,6 +31,7 @@ public class DomainAuthService implements AuthService {
         );
 
         return new AuthResponse(
+                newUser.getId(),
                 newUser.getName(),
                 newUser.getEmail(),
                 jwtService.generateToken(newUser)
@@ -47,6 +48,7 @@ public class DomainAuthService implements AuthService {
         );
         User user = userService.findByEmail(signInRequest.email());
         return new AuthResponse(
+                user.getId(),
                 user.getName(),
                 user.getEmail(),
                 jwtService.generateToken(user)

@@ -6,6 +6,9 @@ import dev.dairo.api_f.Topic.application.response.CreateTopicResponse;
 import dev.dairo.api_f.Topic.application.response.ListTopicResponse;
 import dev.dairo.api_f.Topic.application.response.TopicResponse;
 import dev.dairo.api_f.Topic.domain.Topic;
+import org.hibernate.query.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.UUID;
