@@ -2,6 +2,7 @@ package dev.dairo.api_f.User.application.rest;
 
 import dev.dairo.api_f.User.application.response.DetailUserResponse;
 import dev.dairo.api_f.User.application.response.ListUserResponse;
+import dev.dairo.api_f.User.application.response.UserTopicResponse;
 import dev.dairo.api_f.User.domain.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;

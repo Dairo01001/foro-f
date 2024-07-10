@@ -11,7 +11,10 @@ public interface JpaAnswerRepository extends JpaRepository<Answer, UUID> {
 
     @Query(value = """
             SELECT
-                *
+                answers.id,
+                answers.created_at,
+                answers.solution,
+                answers.message
             FROM
                 answers
             ORDER BY

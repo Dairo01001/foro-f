@@ -20,7 +20,7 @@ public class Course {
     private String name;
     private String category;
 
-    @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
     private List<Topic> topics;
 
     public Course(UUID id, String name, String category) {

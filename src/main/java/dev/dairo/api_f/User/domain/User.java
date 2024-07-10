@@ -32,10 +32,10 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<UserRole> roles;
 
-    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
     private List<Topic> topics;
 
-    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
     private List<Answer> answers;
 
     public User(UUID id, String name, String email, String password, Set<UserRole> roles) {

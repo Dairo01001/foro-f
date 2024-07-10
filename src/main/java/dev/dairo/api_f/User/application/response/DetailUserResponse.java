@@ -1,5 +1,6 @@
 package dev.dairo.api_f.User.application.response;
 
+import dev.dairo.api_f.Answer.domain.Answer;
 import dev.dairo.api_f.User.domain.User;
 
 import java.util.List;
@@ -19,8 +20,8 @@ public record DetailUserResponse(
                 user.getName(),
                 user.getEmail(),
                 user.getRoles().stream().map(role -> role.name()).toList(),
-                UserTopicResponse.fromTopics(user.getTopics()),
-                UserAnswerResponse.fromAnswers(user.getAnswers())
+                user.getTopics().stream().map(UserTopicResponse::fromTopic).toList(),
+                user.getAnswers().stream().map(UserAnswerResponse::fromAnswer).toList()
         );
     }
 }

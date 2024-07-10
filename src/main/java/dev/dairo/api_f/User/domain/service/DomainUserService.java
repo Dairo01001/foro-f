@@ -1,5 +1,6 @@
 package dev.dairo.api_f.User.domain.service;
 
+import dev.dairo.api_f.Topic.domain.Topic;
 import dev.dairo.api_f.User.domain.User;
 import dev.dairo.api_f.User.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -50,5 +51,10 @@ public class DomainUserService implements UserService {
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public List<Topic> findTopicsByUserId(UUID id) {
+        return userRepository.findTopicsByUserId(id);
     }
 }

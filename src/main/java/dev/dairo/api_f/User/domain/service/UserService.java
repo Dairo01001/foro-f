@@ -1,5 +1,6 @@
 package dev.dairo.api_f.User.domain.service;
 
+import dev.dairo.api_f.Topic.domain.Topic;
 import dev.dairo.api_f.User.domain.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -17,4 +18,6 @@ public interface UserService {
     User findById(UUID id);
 
     List<User> findAll();
+
+    List<Topic> findTopicsByUserId(UUID id);
 }
