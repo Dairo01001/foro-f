@@ -3,6 +3,8 @@ package dev.dairo.api_f.Topic.infra.repository;
 import dev.dairo.api_f.Topic.domain.Topic;
 import dev.dairo.api_f.Topic.domain.repository.TopicRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -36,7 +38,7 @@ public class PostgresTopicRepository implements TopicRepository {
     }
 
     @Override
-    public List<Topic> findAll() {
-        return jpaTopicRepository.findAll();
+    public Page<Topic> findAll(Pageable pageable) {
+        return jpaTopicRepository.findAll(pageable);
     }
 }

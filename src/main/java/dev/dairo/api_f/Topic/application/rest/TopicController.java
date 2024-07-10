@@ -6,12 +6,15 @@ import dev.dairo.api_f.Topic.application.response.CreateTopicResponse;
 import dev.dairo.api_f.Topic.application.response.ListTopicResponse;
 import dev.dairo.api_f.Topic.application.response.TopicResponse;
 import dev.dairo.api_f.Topic.domain.service.TopicService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -74,7 +77,9 @@ public class TopicController {
 
     @GetMapping
     @Operation(summary = "Get all topics")
-    public ResponseEntity<List<ListTopicResponse>> getTopics() {
-        return ResponseEntity.ok(topicService.getTopics());
+    public ResponseEntity<Page<ListTopicResponse>> getTopics(
+            @PageableDefault(size = 10, sort = {"createdAt"}) Pageable pageable
+    ) {
+        return ResponseEntity.ok(topicService.getTopics(pageable));
     }
 }
